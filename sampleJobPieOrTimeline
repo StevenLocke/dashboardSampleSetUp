@@ -1,0 +1,10 @@
+require './splunkConfig.rb'
+
+query = 'index="guide" sourcetype=clientevents code="64416" | timechart span="1h" count  as "Orders"'
+earliest_time = "-3d@h"
+output_mode = "json_rows"
+frequency = "10s"
+first_in = "0s"
+event_id = "vod_orders"
+
+SplunkConfig.send_results(query, earliest_time, output_mode, frequency, first_in, event_id, false)
